@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  servlet:
+    context-path: ''
+  tomcat:
+    max-threads: 20
+  compression:
+    enabled: true
+spring:
+  servlet:
+    multipart:
+      max-file-size: 2000Mb
+      max-request-size: 2000Mb
+  datasource:
+    #schema: classpath:db/schema.sql
+    data: classpath*:db/data.sql
+    sql-script-encoding: utf-8
+    initialization-mode: always
+    continue-on-error: true
+    # h2
+    # jdbc:h2:E:*/database
+    # jdbc:h2:tcp://IP/database
+    # jdbc:h2:mem:database
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:h2test
+    username: frozen
+    password: 123456
+  # MySQL
+  #    driver-class-name: com.mysql.jdbc.Driver
+  #    url: jdbc:mysql://101.200.38.80:3306/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+  #    username: root
+  #    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: true
+    resources:
+      chain:
+        gzipped: true
+    profiles:
+      active: prod
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+      path: /h2-console
+      enabled: true
+fileyun:
+  basepath: D:\fileyun
